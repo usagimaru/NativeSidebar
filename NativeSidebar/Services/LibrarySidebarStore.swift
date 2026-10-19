@@ -27,8 +27,8 @@ extension LibrarySidebarStore {
 		for note in self.storage.snapshot.notes {
 			contents.descriptions[note.id] = Self.description(of: note)
 		}
-		for (scopeID, scope) in self.storage.snapshot.scopes {
-			for note in self.storage.notes(matching: scope) {
+		for scopeID in self.storage.snapshot.scopes.keys {
+			for note in self.storage.notes(under: scopeID) {
 				let rowID = self.storage.rowID(for: note.id, under: scopeID)
 				contents.descriptions[rowID] = Self.description(of: note)
 			}
@@ -190,8 +190,8 @@ private extension LibrarySidebarStore {
 			return records
 		}
 
-		if let scope = self.storage.snapshot.scopes[parentID] {
-			return self.storage.notes(matching: scope).map { note in
+		if self.storage.snapshot.scopes[parentID] != nil {
+			return self.storage.notes(under: parentID).map { note in
 				SidebarNode(SidebarElement(id: self.storage.rowID(for: note.id, under: parentID),
 										   kind: .note,
 										   isReference: true))

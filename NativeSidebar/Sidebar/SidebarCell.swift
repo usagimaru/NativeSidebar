@@ -210,7 +210,7 @@ private extension SidebarCell {
 					textField.leadingAnchor.constraint(equalTo: self.leadingAnchor),
 					textField.centerYAnchor.constraint(equalTo: self.centerYAnchor),
 					button.leadingAnchor.constraint(greaterThanOrEqualTo: textField.trailingAnchor, constant: 4),
-					button.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+					button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4),
 					button.centerYAnchor.constraint(equalTo: self.centerYAnchor),
 				])
 		}

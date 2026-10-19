@@ -21,6 +21,10 @@ struct LibrarySnapshot {
 	/// 置き場所を持つものは識別子でそのまま引けるため、条件で決まる範囲の分だけ持つ
 	var scopes = [NoteContainerID: NoteScope]()
 
+	func isSmartFolder(_ containerID: NoteContainerID) -> Bool {
+		self.sidebarRecords.contains { $0.element.id == containerID && $0.element.kind == .smartFolder }
+	}
+
 }
 
 
@@ -81,6 +85,18 @@ final class LibraryStorage {
 			case .recentlyDeleted:
 				return self.snapshot.notes.filter(\.isDeleted)
 		}
+	}
+
+	func notes(under scopeID: SidebarElement.ID) -> [Note] {
+		guard let scope = self.snapshot.scopes[scopeID] else {
+			return []
+		}
+		let notes = self.notes(matching: scope)
+		guard self.snapshot.isSmartFolder(scopeID) else {
+			return notes
+		}
+		// 更新日時順
+		return notes.sorted { $0.modifiedAt > $1.modifiedAt }
 	}
 
 	/// 同じノートが所属フォルダと条件の行の両方に出るため、条件の行の下では別の行識別子を使う

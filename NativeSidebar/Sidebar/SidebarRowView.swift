@@ -25,7 +25,7 @@ final class SidebarRowView: NSTableRowView {
 		}
 
 		let area = NSTrackingArea(rect: .zero,
-								  options: [.mouseEnteredAndExited, .activeInKeyWindow, .inVisibleRect],
+								  options: [.mouseEnteredAndExited, .mouseMoved, .activeInKeyWindow, .inVisibleRect],
 								  owner: self)
 		self.addTrackingArea(area)
 		self.hoverArea = area
@@ -33,7 +33,11 @@ final class SidebarRowView: NSTableRowView {
 	}
 
 	override func mouseEntered(with event: NSEvent) {
-		self.notifyHover(true)
+		self.refreshHover()
+	}
+
+	override func mouseMoved(with event: NSEvent) {
+		self.refreshHover()
 	}
 
 	override func mouseExited(with event: NSEvent) {
@@ -42,7 +46,22 @@ final class SidebarRowView: NSTableRowView {
 
 	/// 行を使い回すと出入りの通知が届かないまま別の項目として現れるため、位置から状態を補う
 	func refreshHover() {
-		self.notifyHover(self.isPointerInside(self.bounds))
+		self.notifyHover(self.isPointerInside(self.hoverRect))
+	}
+
+	/// ディスクロージャの表示切り替えは行の左右に余白を残した領域で判定されるため、アウトラインビューが持つその領域に合わせる
+	private var hoverRect: NSRect {
+		guard let outlineView = self.superview as? NSOutlineView else {
+			return self.bounds
+		}
+		let rowRect = self.convert(self.bounds, to: outlineView)
+		let systemRect = outlineView.trackingAreas
+			.map(\.rect)
+			.first { !$0.isEmpty && rowRect.contains($0) }
+		guard let systemRect else {
+			return self.bounds
+		}
+		return self.convert(systemRect, from: outlineView)
 	}
 
 	private func notifyHover(_ hovered: Bool) {
