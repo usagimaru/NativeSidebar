@@ -6,6 +6,10 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		51C569EC3085DAF600068897 /* MainMenuTemplate in Frameworks */ = {isa = PBXBuildFile; productRef = 51C569EB3085DAF600068897 /* MainMenuTemplate */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		51C569A03083991B00068897 /* NativeSidebar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NativeSidebar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -22,6 +26,7 @@
 		51C5699D3083991B00068897 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				51C569EC3085DAF600068897 /* MainMenuTemplate in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -60,6 +65,9 @@
 				51C569A23083991B00068897 /* NativeSidebar */,
 			);
 			name = NativeSidebar;
+			packageProductDependencies = (
+				51C569EB3085DAF600068897 /* MainMenuTemplate */,
+			);
 			productName = NativeSidebar;
 			productReference = 51C569A03083991B00068897 /* NativeSidebar.app */;
 			productType = "com.apple.product-type.application";
@@ -85,9 +93,13 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 51C569973083991B00068897;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				51C569EA3085DAF600068897 /* XCRemoteSwiftPackageReference "MainMenuTemplate" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 51C569A13083991B00068897 /* Products */;
 			projectDirPath = "";
@@ -120,6 +132,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -184,6 +197,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -249,7 +263,6 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				INFOPLIST_KEY_NSViewGestureRecognizerIsExclusive = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -283,7 +296,6 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				INFOPLIST_KEY_NSViewGestureRecognizerIsExclusive = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -323,6 +335,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		51C569EA3085DAF600068897 /* XCRemoteSwiftPackageReference "MainMenuTemplate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/usagimaru/MainMenuTemplate";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		51C569EB3085DAF600068897 /* MainMenuTemplate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 51C569EA3085DAF600068897 /* XCRemoteSwiftPackageReference "MainMenuTemplate" */;
+			productName = MainMenuTemplate;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 51C569983083991B00068897 /* Project object */;
 	validationLevel = 1;

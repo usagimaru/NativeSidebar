@@ -1,0 +1,359 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "Add": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "追加"
+          }
+        }
+      }
+    },
+    "All Notes": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべてのノート"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キャンセル"
+          }
+        }
+      }
+    },
+    "Collections": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "コレクション"
+          }
+        }
+      }
+    },
+    "Delete": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "削除"
+          }
+        }
+      }
+    },
+    "Delete the selected items?": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選択した項目を削除しますか？"
+          }
+        }
+      }
+    },
+    "Delete “%@”?": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@”を削除しますか？"
+          }
+        }
+      }
+    },
+    "Delete…": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "削除…"
+          }
+        }
+      }
+    },
+    "Design Review\nNotes from the sidebar walkthrough.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デザインレビュー\nサイドバーの通し確認のノート。"
+          }
+        }
+      }
+    },
+    "Flagged": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フラグ付き"
+          }
+        }
+      }
+    },
+    "Invoices": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請求"
+          }
+        }
+      }
+    },
+    "Library": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ライブラリ"
+          }
+        }
+      }
+    },
+    "Meetings": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "会議"
+          }
+        }
+      }
+    },
+    "Native Sidebar": {
+      "shouldTranslate": false
+    },
+    "New Folder": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新規フォルダ"
+          }
+        }
+      }
+    },
+    "New Note": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新規ノート"
+          }
+        }
+      }
+    },
+    "New Smart Folder": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新規スマートフォルダ"
+          }
+        }
+      }
+    },
+    "New Window": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新規ウインドウ"
+          }
+        }
+      }
+    },
+    "No Note Selected": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ノートが選択されていません"
+          }
+        }
+      }
+    },
+    "Open Data Folder": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "データフォルダを開く"
+          }
+        }
+      }
+    },
+    "Personal": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "個人"
+          }
+        }
+      }
+    },
+    "Reading List\nBooks to finish this season.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "読みたい本\n今季中に読み終える本。"
+          }
+        }
+      }
+    },
+    "Recently Deleted": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近削除した項目"
+          }
+        }
+      }
+    },
+    "Remove": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取り除く"
+          }
+        }
+      }
+    },
+    "Rename…": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名称変更…"
+          }
+        }
+      }
+    },
+    "Shared": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "共有"
+          }
+        }
+      }
+    },
+    "Smart Folders": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スマートフォルダ"
+          }
+        }
+      }
+    },
+    "This Week": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今週"
+          }
+        }
+      }
+    },
+    "This cannot be undone.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この操作は取り消せません。"
+          }
+        }
+      }
+    },
+    "Travel": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "旅行"
+          }
+        }
+      }
+    },
+    "Untitled Folder": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名称未設定フォルダ"
+          }
+        }
+      }
+    },
+    "Untitled Note": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名称未設定ノート"
+          }
+        }
+      }
+    },
+    "Untitled Smart Folder": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名称未設定スマートフォルダ"
+          }
+        }
+      }
+    },
+    "Use Subdued Selection Color": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "セルの強調色を控えめにする"
+          }
+        }
+      }
+    },
+    "Weekly Sync\nAgenda and follow-ups.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "定例ミーティング\n議題と持ち越し事項。"
+          }
+        }
+      }
+    },
+    "Work": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仕事"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

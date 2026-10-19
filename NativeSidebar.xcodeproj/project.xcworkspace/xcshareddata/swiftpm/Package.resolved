@@ -1,0 +1,15 @@
+{
+  "originHash" : "08465388c38a598dffaae01b76dd18dbb378ab995d02a5ad12d50b02ab15cd3b",
+  "pins" : [
+    {
+      "identity" : "mainmenutemplate",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/usagimaru/MainMenuTemplate",
+      "state" : {
+        "revision" : "d0642d17d157707719a85306a8efa8614588cd66",
+        "version" : "1.2.2"
+      }
+    }
+  ],
+  "version" : 3
+}
