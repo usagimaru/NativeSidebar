@@ -72,8 +72,8 @@ final class SidebarViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.sidebarController.reload()
+		self.restoreExpandedItems()
 		self.restoreInitialSelection()
-		self.expandAllContainers()
 		self.observeRowSizeChanges()
 	}
 
@@ -105,6 +105,7 @@ extension SidebarViewController {
 		outlineView.allowsMultipleSelection = true
 		outlineView.allowsEmptySelection = false
 		outlineView.floatsGroupRows = false
+		outlineView.autosaveExpandedItems = true
 		outlineView.dataSource = self
 		outlineView.delegate = self
 		outlineView.contextMenuItemsProvider = { [weak self] row in
@@ -175,19 +176,40 @@ extension SidebarViewController {
 	func applySelectionEmphasisStyle() {
 		self.outlineView.selectionHighlightStyle = .regular
 		self.outlineView.reloadData()
-		self.expandAllContainers()
 		self.syncSelectionRows()
 	}
 
-	func expandAllContainers() {
-		for id in self.sidebarController.snapshot.orderedIDs {
-			guard self.sidebarController.element(id)?.acceptsChildren == true
-					|| !self.sidebarController.snapshot.children(of: id).isEmpty
-			else {
-				continue
-			}
+}
+
+
+// MARK: - 展開状態
+
+extension SidebarViewController {
+
+	private static let expansionAutosaveName = "SidebarExpansion"
+	private static let hasExpandedInitiallyKey = "SidebarHasExpandedInitially"
+
+	private var containerIDs: [SidebarElement.ID] {
+		self.sidebarController.snapshot.orderedIDs.filter { id in
+			self.sidebarController.element(id)?.acceptsChildren == true
+				|| !self.sidebarController.snapshot.children(of: id).isEmpty
+		}
+	}
+
+	private func expandAllContainers() {
+		for id in self.containerIDs {
 			self.outlineView.expandItem(self.proxy(for: id))
 		}
+	}
+
+	private func restoreExpandedItems() {
+		self.outlineView.autosaveName = Self.expansionAutosaveName
+
+		guard !UserDefaults.standard.bool(forKey: Self.hasExpandedInitiallyKey) else {
+			return
+		}
+		self.expandAllContainers()
+		UserDefaults.standard.set(true, forKey: Self.hasExpandedInitiallyKey)
 	}
 
 }
@@ -345,6 +367,20 @@ extension SidebarViewController: NSOutlineViewDataSource {
 		}
 		return self.sidebarController.element(id)?.acceptsChildren == true
 			|| !self.sidebarController.snapshot.children(of: id).isEmpty
+	}
+
+	func outlineView(_ outlineView: NSOutlineView, persistentObjectForItem item: Any?) -> Any? {
+		self.identifier(of: item)?.uuidString
+	}
+
+	func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
+		guard let string = object as? String,
+			  let id = UUID(uuidString: string),
+			  self.sidebarController.snapshot.contains(id)
+		else {
+			return nil
+		}
+		return self.proxy(for: id)
 	}
 
 }

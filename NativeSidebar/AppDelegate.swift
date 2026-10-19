@@ -105,11 +105,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				.init(title: String(localized: "Open Data Folder"),
 					  action: #selector(self.revealDataFile(_:)),
 					  target: self),
-				.separator(),
-				.init(title: String(localized: "Delete"),
-					  action: #selector(SidebarViewController.deleteSelection(_:)),
-					  keyEquivalent: "\u{8}",
-					  modifierMask: .command),
 			]
 		}))
 
