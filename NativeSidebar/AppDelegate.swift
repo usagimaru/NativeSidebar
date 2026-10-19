@@ -132,8 +132,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	// MARK: -
 
 	private func openWindow() {
+		let reference = NSApp.mainWindow ?? self.windowControllers.last?.window
 		let windowController = MainWindowController(sidebarStore: self.sidebarStore,
-													noteStore: self.noteStore)
+													noteStore: self.noteStore,
+													cascadingFrom: reference)
 		self.windowControllers.append(windowController)
 		windowController.showWindow(self)
 

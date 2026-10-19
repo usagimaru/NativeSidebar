@@ -6,6 +6,8 @@ final class MainSplitViewController: NSSplitViewController {
 	let sidebarViewController: SidebarViewController
 	let noteEditorViewController: NoteEditorViewController
 
+	@objc dynamic private(set) var subtitle = ""
+
 	private let noteStore: NoteStore
 
 	init(sidebarStore: SidebarStore, noteStore: NoteStore) {
@@ -36,6 +38,15 @@ final class MainSplitViewController: NSSplitViewController {
 
 		self.sidebarViewController.delegate = self
 		self.updateEditor()
+
+		// 見出しは本文の先頭行なので、本文の確定に合わせてウインドウタイトルを追従させる
+		NotificationCenter.default.addObserver(forName: .noteStoreDidChange,
+											   object: nil,
+											   queue: .main) { [weak self] _ in
+			MainActor.assumeIsolated {
+				self?.updateTitle()
+			}
+		}
 	}
 
 	func commitNoteEditing() {
@@ -62,9 +73,34 @@ extension MainSplitViewController: SidebarViewControllerDelegate {
 	}
 
 	private func updateEditor() {
-		let selected = self.sidebarViewController.selectedIDs.first
-		let isNote = selected.flatMap { self.sidebarViewController.sidebarController.element($0) }?.kind == .note
-		self.noteEditorViewController.present(noteID: isNote ? selected : nil)
+		let content: NoteEditorViewController.Content
+		switch self.selectedNoteID {
+		case .some(let id):
+			content = .note(id)
+		case .none where self.sidebarViewController.selectedIDs.count > 1:
+			content = .multipleSelection
+		case .none:
+			content = .none
+		}
+		self.noteEditorViewController.present(content)
+		self.updateTitle()
+	}
+
+	private func updateTitle() {
+		let note = self.selectedNoteID.flatMap { self.noteStore.note($0) }
+		self.title = note?.title
+		self.subtitle = note?.isDeleted == true ? String(localized: "Recently Deleted") : ""
+	}
+
+	/// 複数選択はノートを含んでいても編集対象にしない
+	private var selectedNoteID: Note.ID? {
+		let selected = self.sidebarViewController.selectedIDs
+		guard selected.count == 1, let id = selected.first,
+			  self.sidebarViewController.sidebarController.element(id)?.kind == .note
+		else {
+			return nil
+		}
+		return id
 	}
 
 }

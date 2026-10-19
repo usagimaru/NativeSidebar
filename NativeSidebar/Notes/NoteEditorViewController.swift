@@ -3,6 +3,12 @@ import Cocoa
 
 final class NoteEditorViewController: NSViewController {
 
+	enum Content {
+		case none
+		case multipleSelection
+		case note(Note.ID)
+	}
+
 	let noteStore: NoteStore
 
 	private var textView: NSTextView!
@@ -43,14 +49,24 @@ final class NoteEditorViewController: NSViewController {
 
 extension NoteEditorViewController {
 
-	func present(noteID: Note.ID?) {
+	func present(_ content: Content) {
 		self.commit()
 
-		self.editingNoteID = noteID
-		let note = noteID.flatMap { self.noteStore.note($0) }
-		self.textView.string = note?.body ?? ""
-		self.textView.isEditable = note != nil
-		self.placeholderLabel.isHidden = note != nil
+		switch content {
+		case .none:
+			self.showPlaceholder(String(localized: "No Note Selected"))
+		case .multipleSelection:
+			self.showPlaceholder(String(localized: "Multiple Notes Selected"))
+		case .note(let id):
+			guard let note = self.noteStore.note(id) else {
+				self.showPlaceholder(String(localized: "No Note Selected"))
+				return
+			}
+			self.editingNoteID = id
+			self.textView.string = note.body
+			self.textView.isEditable = true
+			self.placeholderLabel.isHidden = true
+		}
 	}
 
 	func commit() {
@@ -66,10 +82,7 @@ extension NoteEditorViewController {
 		}
 
 		guard let note = self.noteStore.note(id) else {
-			self.editingNoteID = nil
-			self.textView.string = ""
-			self.textView.isEditable = false
-			self.placeholderLabel.isHidden = false
+			self.showPlaceholder(String(localized: "No Note Selected"))
 			return
 		}
 
@@ -78,6 +91,14 @@ extension NoteEditorViewController {
 			return
 		}
 		self.textView.string = note.body
+	}
+
+	private func showPlaceholder(_ text: String) {
+		self.editingNoteID = nil
+		self.textView.string = ""
+		self.textView.isEditable = false
+		self.placeholderLabel.stringValue = text
+		self.placeholderLabel.isHidden = false
 	}
 
 }
@@ -102,7 +123,7 @@ private extension NoteEditorViewController {
 		textView.textContainerInset = NSSize(width: 16, height: 16)
 		textView.drawsBackground = false
 
-		let placeholderLabel = NSTextField(labelWithString: String(localized: "No Note Selected"))
+		let placeholderLabel = NSTextField(labelWithString: "")
 		placeholderLabel.font = .systemFont(ofSize: NSFont.systemFontSize * 1.4, weight: .medium)
 		placeholderLabel.textColor = .secondaryLabelColor
 		placeholderLabel.translatesAutoresizingMaskIntoConstraints = false

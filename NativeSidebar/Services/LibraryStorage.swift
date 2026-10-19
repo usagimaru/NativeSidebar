@@ -255,11 +255,14 @@ private extension LibrarySnapshot {
 
 		snapshot.notes = [
 			Note(containerIDs: [meetings],
-				 body: String(localized: "Weekly Sync\nAgenda and follow-ups.")),
+				 body: String(localized: "SEED_NOTE_WEEKLY_SYNC_BODY",
+							  defaultValue: "Weekly Sync\nAgenda and follow-ups.")),
 			Note(containerIDs: [meetings],
-				 body: String(localized: "Design Review\nNotes from the sidebar walkthrough.")),
+				 body: String(localized: "SEED_NOTE_DESIGN_REVIEW_BODY",
+							  defaultValue: "Design Review\nNotes from the sidebar walkthrough.")),
 			Note(containerIDs: [personal],
-				 body: String(localized: "Reading List\nBooks to finish this season.")),
+				 body: String(localized: "SEED_NOTE_READING_LIST_BODY",
+							  defaultValue: "Reading List\n- Model-Based UI Design")),
 		]
 
 		return snapshot

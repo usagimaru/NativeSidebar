@@ -33,8 +33,9 @@ extension ToolbarController: NSToolbarDelegate {
 
 	func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
 		[.toggleSidebar,
-		 .sidebarTrackingSeparator,
+		 .flexibleSpace,
 		 ItemIdentifier.addElement,
+		 .sidebarTrackingSeparator,
 		 ItemIdentifier.removeElement,
 		 .flexibleSpace,
 		 ItemIdentifier.search]
@@ -62,7 +63,7 @@ extension ToolbarController: NSToolbarDelegate {
 			case ItemIdentifier.removeElement:
 				return self.makeButtonItem(identifier: itemIdentifier,
 										   label: String(localized: "Remove"),
-										   symbolName: "minus",
+										   symbolName: "trash",
 										   action: #selector(SidebarViewController.deleteSelection(_:)))
 
 			case ItemIdentifier.search:
